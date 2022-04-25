@@ -4,5 +4,7 @@ module.exports = {
   globals: {
     Component: true,
     WeixinJSBridge: true,
+    getCurrentPages: true,
+    wx: true,
   },
 }
