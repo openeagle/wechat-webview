@@ -1,0 +1,51 @@
+{
+  "name": "@openeagle/wechat-webview",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "files": [
+    "lib",
+    "miniproram_dist"
+  ],
+  "scripts": {
+    "pre-commit": "lint-staged",
+    "prepare": "husky install",
+    "lint:js": "eslint \"./**/*.{js,ts,tsx,vue}\"",
+    "lint:css": "stylelint --allow-empty-input \"./**/*.(css|less|scss|vue)\"",
+    "lint": "run-s lint:*",
+    "format:js": "eslint --fix \"./**/*.{js,ts,tsx,vue}\"",
+    "format:css": "stylelint --fix --allow-empty-input \"./**/*.(css|less|scss|vue)\"",
+    "format": "run-s format:*",
+    "build": "run-s clean:* build:**",
+    "build:h5": "babel -D --env-name commonjs -x .js ./src/wechat -d ./miniproram_dist",
+    "build:wechat": "babel -D --env-name commonjs -x .js ./src/h5 -d ./lib",
+    "clean": "run-s clean:*",
+    "clean:h5": "rimraf ./lib",
+    "release": "run-s build release:*",
+    "release:semantic": "semantic-release"
+  },
+  "lint-staged": {
+    "*.{vue,ts,tsx,js,jsx}": "eslint --fix",
+    "*.{vue,css,less,sass,scss}": "stylelint --fix"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@openeagle/eslint-config-vue": "^1.0.1",
+    "@openeagle/prettier-config": "^1.0.1",
+    "@openeagle/stylelint-config": "^1.0.2",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.0.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^12.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.0",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^17.4.1",
+    "stylelint": "^14.0.0",
+    "typescript": "^4.6.0"
+  }
+}
